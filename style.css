@@ -1,0 +1,395 @@
+:root {
+  --bg: #f6f8fa;
+  --card-bg: #fff;
+  --text: #222;
+  --accent: linear-gradient(90deg, #4caf50 0%, #2196f3 100%);
+  --arrow: #bdbdbd;
+  --node-shadow: 0 4px 16px rgba(60, 60, 60, 0.08);
+  --timeline-bg: #e3e7ee;
+  --footer-bg: #f0f0f0;
+  --hover: #e0f7fa;
+}
+
+[data-theme="dark"] {
+  --bg: #181a1b;
+  --card-bg: #23272b;
+  --text: #f3f3f3;
+  --accent: linear-gradient(90deg, #9c27b0 0%, #2196f3 100%);
+  --arrow: #444;
+  --node-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --timeline-bg: #23272b;
+  --footer-bg: #181a1b;
+  --hover: #333;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s, color 0.4s;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.2s;
+}
+#theme-toggle:hover {
+  transform: scale(1.15);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.flow-container.flow-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.git-node {
+  background: var(--card-bg);
+  border-radius: 1.2rem;
+  box-shadow: var(--node-shadow);
+  padding: 1.2rem 1.2rem 1rem 1.2rem;
+  min-width: 160px;
+  text-align: center;
+  position: relative;
+  transition: box-shadow 0.3s, background 0.3s;
+  cursor: pointer;
+  z-index: 1;
+}
+.git-node .icon {
+  margin-bottom: 0.6rem;
+}
+.git-node h3 {
+  margin: 0.2rem 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+.git-node p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.arrow {
+  width: 50px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.arrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: var(--arrow);
+  border-radius: 2px;
+  position: absolute;
+  left: 5px;
+  top: 13px;
+  animation: arrow-flow 2s infinite linear;
+}
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid var(--arrow);
+}
+
+@keyframes arrow-flow {
+  0% {
+    background: var(--arrow);
+  }
+  50% {
+    background: #2196f3;
+  }
+  100% {
+    background: var(--arrow);
+  }
+}
+
+.git-node:hover,
+.git-node.active {
+  box-shadow: 0 8px 24px rgba(33, 150, 243, 0.18);
+  background: var(--hover);
+  outline: 2px solid #2196f3;
+  z-index: 2;
+}
+.git-node:hover ~ .arrow,
+.git-node.active ~ .arrow {
+  background: #2196f3;
+}
+.arrow.highlighted::before,
+.arrow.highlighted::after {
+  background: #2196f3 !important;
+  border-left-color: #2196f3 !important;
+}
+
+.flow-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#cycle-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
+  transition: background 0.3s, transform 0.2s;
+}
+#cycle-btn:hover {
+  background: linear-gradient(90deg, #2196f3 0%, #4caf50 100%);
+  transform: scale(1.05);
+}
+
+.timeline-container {
+  background: var(--timeline-bg);
+  border-radius: 1.2rem;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 12px rgba(33, 150, 243, 0.06);
+  overflow-x: auto;
+  position: relative; /* Add stacking context */
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: nowrap;
+  min-width: 700px;
+  position: relative; /* Add stacking context */
+}
+
+.timeline-node {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: var(--node-shadow);
+  padding: 1rem 1.2rem;
+  min-width: 120px;
+  text-align: center;
+  position: relative;
+  transition: box-shadow 0.3s, background 0.3s;
+  cursor: pointer;
+  z-index: 2; /* Ensure above arrows */
+}
+.timeline-node .cmd-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.timeline-node .cmd-desc {
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.timeline-arrow {
+  width: 40px;
+  height: 20px;
+  position: relative;
+}
+.timeline-arrow::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: var(--arrow);
+  border-radius: 2px;
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  animation: timeline-arrow-flow 2s infinite linear;
+}
+.timeline-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 5px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid var(--arrow);
+}
+
+@keyframes timeline-arrow-flow {
+  0% {
+    background: var(--arrow);
+  }
+  50% {
+    background: #4caf50;
+  }
+  100% {
+    background: var(--arrow);
+  }
+}
+
+.timeline-node:hover,
+.timeline-node.active {
+  box-shadow: 0 8px 24px rgba(76, 175, 80, 0.18);
+  background: var(--hover);
+  outline: 2px solid #4caf50;
+  z-index: 2;
+}
+.timeline-arrow.highlighted::before,
+.timeline-arrow.highlighted::after {
+  background: #4caf50 !important;
+  border-left-color: #4caf50 !important;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 100; /* Ensure tooltip is always on top */
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.timeline-node:hover .tooltip,
+.timeline-node.active .tooltip {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+footer {
+  background: var(--footer-bg);
+  color: var(--text);
+  text-align: center;
+  padding: 1.2rem 0;
+  font-size: 1rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .flow-container {
+    gap: 1rem;
+  }
+  .flow-container.flow-horizontal {
+    gap: 0.7rem;
+  }
+  .timeline {
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 1rem 0.5rem;
+  }
+  .flow-container {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .flow-container.flow-horizontal {
+    flex-direction: row;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+  .git-node {
+    min-width: 140px;
+    padding: 0.7rem 0.7rem;
+  }
+  .arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  header {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.2rem 0.7rem 0.7rem 0.7rem;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
+  .timeline-container {
+    padding: 1rem 0.3rem;
+  }
+  .git-node {
+    min-width: 110px;
+    padding: 0.5rem 0.5rem;
+  }
+  .arrow {
+    width: 18px;
+    height: 18px;
+  }
+  .flow-btn-container {
+    margin-top: 0.5rem;
+  }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Git Workflow</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Git Workflow Visual Guide</h1>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </header>
+    <main>
+      <section id="core-architecture">
+        <h2>Git Core Architecture Flow</h2>
+        <div class="flow-container flow-horizontal">
+          <div class="git-node" data-step="0">
+            <div class="icon">
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="18" fill="#4CAF50" />
+                <text
+                  x="20"
+                  y="25"
+                  text-anchor="middle"
+                  font-size="16"
+                  fill="#fff"
+                >
+                  WD
+                </text>
+              </svg>
+            </div>
+            <h3>Working Directory</h3>
+            <p>Your project files on disk.</p>
+          </div>
+          <div class="arrow" data-step="0"></div>
+          <div class="git-node" data-step="1">
+            <div class="icon">
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <rect
+                  x="6"
+                  y="6"
+                  width="28"
+                  height="28"
+                  rx="6"
+                  fill="#FF9800"
+                />
+                <text
+                  x="20"
+                  y="25"
+                  text-anchor="middle"
+                  font-size="16"
+                  fill="#fff"
+                >
+                  SA
+                </text>
+              </svg>
+            </div>
+            <h3>Staging Area</h3>
+            <p>Files marked for commit.</p>
+          </div>
+          <div class="arrow" data-step="1"></div>
+          <div class="git-node" data-step="2">
+            <div class="icon">
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <rect
+                  x="6"
+                  y="6"
+                  width="28"
+                  height="28"
+                  rx="6"
+                  fill="#2196F3"
+                />
+                <text
+                  x="20"
+                  y="25"
+                  text-anchor="middle"
+                  font-size="16"
+                  fill="#fff"
+                >
+                  LR
+                </text>
+              </svg>
+            </div>
+            <h3>Local Repository</h3>
+            <p>Commits stored locally.</p>
+          </div>
+          <div class="arrow" data-step="2"></div>
+          <div class="git-node" data-step="3">
+            <div class="icon">
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <ellipse cx="20" cy="20" rx="16" ry="18" fill="#9C27B0" />
+                <text
+                  x="20"
+                  y="25"
+                  text-anchor="middle"
+                  font-size="16"
+                  fill="#fff"
+                >
+                  RR
+                </text>
+              </svg>
+            </div>
+            <h3>Remote Repository</h3>
+            <p>Shared repository online.</p>
+          </div>
+        </div>
+        <div class="flow-btn-container">
+          <button id="cycle-btn">Step-by-Step Animation</button>
+        </div>
+      </section>
+      <section id="command-workflow">
+        <h2>Command-Based Git Workflow</h2>
+        <div class="timeline-container">
+          <div class="timeline">
+            <div class="timeline-node" data-cmd="clone">
+              <div class="cmd-title">git clone</div>
+              <div class="cmd-desc">Copy a remote repo to your computer.</div>
+            </div>
+            <div class="timeline-arrow"></div>
+            <div class="timeline-node" data-cmd="add">
+              <div class="cmd-title">git add</div>
+              <div class="cmd-desc">Stage changes for commit.</div>
+            </div>
+            <div class="timeline-arrow"></div>
+            <div class="timeline-node" data-cmd="commit">
+              <div class="cmd-title">git commit</div>
+              <div class="cmd-desc">Save staged changes locally.</div>
+            </div>
+            <div class="timeline-arrow"></div>
+            <div class="timeline-node" data-cmd="push">
+              <div class="cmd-title">git push</div>
+              <div class="cmd-desc">Upload commits to remote repo.</div>
+            </div>
+            <div class="timeline-arrow"></div>
+            <div class="timeline-node" data-cmd="pull">
+              <div class="cmd-title">git pull</div>
+              <div class="cmd-desc">Fetch and merge remote changes.</div>
+            </div>
+            <div class="timeline-arrow"></div>
+            <div class="timeline-node" data-cmd="merge">
+              <div class="cmd-title">git merge</div>
+              <div class="cmd-desc">Combine branches together.</div>
+            </div>
+            <div class="timeline-arrow"></div>
+            <div class="timeline-node" data-cmd="checkout">
+              <div class="cmd-title">git checkout</div>
+              <div class="cmd-desc">Switch branches or restore files.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>Made with ❤️ to help you learn Git. &copy; 2025</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
